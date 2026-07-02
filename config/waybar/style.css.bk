@@ -1,0 +1,115 @@
+/* Palette extracted from wallpaper.jpg */
+@define-color bg_dark #0d0f12;          /* Deep base shadow */
+@define-color torii_orange #ff4f27;     /* High-vibrancy Torii gate orange */
+@define-color path_grey #62747f;        /* Cool stone path walkway hue */
+@define-color soft_amber #e88d67;       /* Top lintel soft glow orange */
+@define-color weathered_red #b83a1b;    /* Darker, aged gate wood */
+@define-color deep_shadow #21252d;      /* Shadowed interior columns */
+@define-color text_muted #888888;
+
+* {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  text-shadow: none;
+  transition: none;
+  box-shadow: none;
+  color: #ffffff;
+}
+
+window#waybar {
+  background: @bg_dark;
+  font-family: "JetBrains Mono", sans-serif;
+  font-size: 11pt;
+}
+
+/* --- Left Modules --- */
+
+#workspaces {
+  border: 2pt solid @torii_orange; /* Outer orange outline is back */
+  margin: 3pt 2pt;
+  padding: 0 2pt;
+}
+
+#workspaces button {
+  padding: 0 4pt;
+  margin: 0;
+  font-size: 10pt;
+  color: @text_muted;
+  /* Bottom border spacing so elements don't shift when active */
+  border-bottom: 2pt solid transparent; 
+}
+
+#workspaces button.active {
+  color: #ffffff;               /* Active workspace number turns bright white */
+  border-bottom: 2pt solid #ffffff; /* Clean white bar indicator underneath */
+}
+
+#window {
+  border: 2pt solid @path_grey;
+  padding: 0 6pt;
+  margin: 3pt 4pt; 
+}
+
+#mpris {
+  border: 2pt solid @soft_amber;
+  padding: 0 6pt;
+  margin: 3pt 2pt;
+}
+
+#tray {
+  border: 2pt solid @weathered_red;
+  padding: 0 6pt;
+  margin: 3pt 2pt;
+}
+
+/* --- Center Modules --- */
+
+#clock {
+  border: 2pt solid @torii_orange;
+  padding: 0 8pt;
+  margin: 3pt 0;
+}
+
+/* --- Right Modules --- */
+
+#cpu {
+  border: 2pt solid @soft_amber;
+  padding: 0 6pt;
+  margin: 3pt 0;
+}
+
+#memory {
+  border: 2pt solid @weathered_red;
+  padding: 0 6pt;
+  margin: 3pt 0;
+}
+
+#wireplumber {
+  border: 2pt solid @torii_orange;
+  background: transparent;
+  color: #ffffff;
+  padding: 0 6pt;
+  margin: 3pt 0;
+}
+
+#backlight {
+  border: 2pt solid @weathered_red;
+  background: transparent;
+  color: #ffffff;
+  padding: 0 6pt;
+  margin: 3pt 0;
+}
+
+#battery {
+  border: 2pt solid @deep_shadow;
+  padding: 0 6pt;
+  margin: 3pt 0;
+}
+
+#battery.charging {
+  border: 2pt solid #27ff4f;
+  color: #27ff4f;
+  background: transparent;
+}

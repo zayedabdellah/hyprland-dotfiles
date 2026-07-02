@@ -1,0 +1,72 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 34, 
+  "spacing": 4,
+  "modules-left": ["hyprland/workspaces", "hyprland/window", "mpris", "tray"],
+  "modules-center": ["clock"],
+  "modules-right": ["cpu", "memory", "wireplumber#sink", "backlight", "battery"],
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{name}",
+    "on-click": "hyprctl dispatch workspace {name}" 
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "separate-outputs": true,
+    "tooltip": true,
+    "tooltip-format": "Class: {class}\nTitle: {initialTitle}",
+    "max-length": 25
+  },
+  "mpris": {
+    "format": "{dynamic}",
+    "format-paused": "<i>{dynamic}</i>",
+    "max-length": 20,
+    "interval": 1
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8
+  },
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 1,
+    "on-click": "kitty -e btop"
+  },
+  "memory": {
+    "interval": 1,
+    "format": " {}%",
+    "on-click": "kitty -e btop"
+  },
+  "wireplumber#sink": {
+    "format": " {volume}%",
+    "format-muted": "  mut",
+    "on-click": "pwvucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "scroll-step": 5,
+    "max-volume": 150,
+    "interval": 1
+  },
+  "backlight": {
+    "interval": 1,
+    "format": "󰃠 {percent}%",
+    "scroll-step": 5
+  },
+  "battery": {
+    "interval": 5,
+    "states": {
+      "good": 99,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "  {capacity}%",
+    "format-charging": "󱐋 {capacity}%"
+  },
+  "clock": {
+    "format": "{:%d/%m/%Y, %H:%M:%S}",
+    "interval": 1
+  }
+}

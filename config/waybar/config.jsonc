@@ -1,0 +1,62 @@
+{
+  "name": "bottom-bar",
+  "layer": "top",
+  "position": "bottom",
+  "height": 34, 
+  "spacing": 4,
+  "modules-left": ["hyprland/workspaces", "hyprland/window", "tray"],
+  "modules-center": ["clock"],
+  "modules-right": ["cpu", "memory", "wireplumber#sink", "backlight", "battery"],
+  
+  "hyprland/workspaces": { 
+    "disable-scroll": true, 
+    "all-outputs": true, 
+    "format": "{name}", 
+    "on-click": "hyprctl dispatch workspace {name}" 
+  },
+  
+  "hyprland/window": { 
+    "format": "{title}", 
+    "max-length": 25 
+  },
+  
+  "tray": { 
+    "icon-size": 14, 
+    "spacing": 8 
+  },
+  
+  "cpu": { 
+    "format": " {usage}%", 
+    "interval": 1, 
+    "on-click": "kitty -e btop" 
+  },
+  
+  "memory": { 
+    "interval": 1, 
+    "format": " {}%", 
+    "on-click": "kitty -e btop" 
+  },
+  
+    "wireplumber#sink": { 
+    "format": " {volume}%", 
+    "interval": 1,
+    "on-click": "pavucontrol-qt", 
+    "on-click-right": "~/.local/bin/volume-toggle"
+  },
+
+  "backlight": { 
+    "interval": 1, 
+    "format": "󰃠 {percent}%" 
+  },
+  
+  "battery": { 
+    "format": " {capacity}%", 
+    "format-charging": "󱐋 {capacity}%" 
+  },
+  
+  "clock": { 
+    "format": "{:%d/%m/%Y, %H:%M:%S}", 
+    "interval": 1 
+  }
+}
+

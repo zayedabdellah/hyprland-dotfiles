@@ -131,8 +131,26 @@ PKG_NAMES[hyprpolkitagent_ubuntu]="hyprpolkitagent"
 PKG_NAMES[hyprpolkitagent_fedora]="hyprpolkitagent"
 PKG_NAMES[hyprpolkitagent_gentoo]="gui-apps/hyprpolkitagent"
 
+PKG_NAMES[nwg-look_arch]="nwg-look"
+PKG_NAMES[nwg-look_debian]="nwg-look"
+PKG_NAMES[nwg-look_ubuntu]="nwg-look"
+PKG_NAMES[nwg-look_fedora]="nwg-look"
+PKG_NAMES[nwg-look_gentoo]="gui-apps/nwg-look"
+
+PKG_NAMES[kvantum_arch]="kvantum"
+PKG_NAMES[kvantum_debian]="qt5-style-kvantum"
+PKG_NAMES[kvantum_ubuntu]="qt5-style-kvantum"
+PKG_NAMES[kvantum_fedora]="kvantum"
+PKG_NAMES[kvantum_gentoo]="x11-themes/kvantum"
+
+PKG_NAMES[qt6ct_arch]="qt6ct"
+PKG_NAMES[qt6ct_debian]="qt6ct"
+PKG_NAMES[qt6ct_ubuntu]="qt6ct"
+PKG_NAMES[qt6ct_fedora]="qt6ct"
+PKG_NAMES[qt6ct_gentoo]="dev-qt/qt6ct"
+
 # List of core dependencies to check
-CORE_DEPS=("hyprland" "waybar" "kitty" "thunar" "rofi" "brave-browser" "hyprshutdown" "hyprlock" "grim" "slurp" "wl-copy" "pipewire" "brightnessctl" "playerctl" "swaync" "awww-daemon" "hyprpolkitagent")
+CORE_DEPS=("hyprland" "waybar" "kitty" "thunar" "rofi" "brave-browser" "hyprshutdown" "hyprlock" "grim" "slurp" "wl-copy" "pipewire" "brightnessctl" "playerctl" "swaync" "awww-daemon" "hyprpolkitagent" "nwg-look" "kvantum" "qt6ct")
 
 INSTALL_COMMANDS=()
 
@@ -203,5 +221,20 @@ mkdir -p "$HOME/.themes"
 echo "Copying themes..."
 cp -r "$(dirname "$0")"/themes/* "$HOME/.themes/"
 echo "Theme files have been copied to ~/.themes."
+
+echo "Applying GTK theme using gsettings..."
+if command_exists gsettings; then
+  gsettings set org.gnome.desktop.interface gtk-theme "gruvbox-dark-gtk"
+  echo "GTK theme set to gruvbox-dark-gtk."
+else
+  echo "gsettings not found. Please set your GTK theme to 'gruvbox-dark-gtk' manually using nwg-look."
+fi
+
+echo "--------------------------------------------------"
+echo "Final Setup Instructions:"
+echo "1. Open 'nwg-look' to verify your GTK theme and icons."
+echo "2. Open 'Kvantum Manager', select 'Change/Delete Theme', and choose 'gruvbox-kvantum'."
+echo "3. Open 'qt6ct' and ensure the style is set to 'kvantum'."
+echo "--------------------------------------------------"
 
 echo "Installation script finished. Please restart Hyprland to apply changes."

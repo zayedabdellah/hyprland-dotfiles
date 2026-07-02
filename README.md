@@ -51,6 +51,16 @@ The Waybar configuration is located in `~/.config/waybar/`. It includes `config.
 
 Theme files (GTK, Qt Kvantum) are included and will be placed in `~/.themes/` by the installation script.
 
+#### Theme Setup Instructions
+
+To ensure your apps pick up the themes correctly:
+1.  **GTK Apps:** The script attempts to set the theme automatically. You can verify this by opening `nwg-look`.
+2.  **Qt Apps:** 
+    *   Open **Kvantum Manager**.
+    *   Go to **Change/Delete Theme**.
+    *   Select **gruvbox-kvantum** from the list and click **Use this theme**.
+    *   Open **qt6ct** (or `qt5ct` if using Qt5) and ensure the **Style** is set to **kvantum**.
+
 ## Dependencies
 
 The following applications are used in these configurations:
@@ -72,6 +82,9 @@ The following applications are used in these configurations:
 *   **swaync**: A Wayland native notification daemon.
 *   **awww-daemon**: An animated wallpaper daemon for Wayland.
 *   **hyprpolkitagent**: A Polkit agent for Hyprland.
+*   **nwg-look**: A GTK3 settings editor for wlroots-based compositors.
+*   **Kvantum**: A SVG-based theme engine for Qt.
+*   **qt6ct**: Qt6 Configuration Tool.
 
 ## Contributing
 

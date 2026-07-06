@@ -214,6 +214,9 @@ cp -r "$(dirname "$0")"/config/hypr "$HOME/.config/"
 echo "Copying Waybar configurations..."
 cp -r "$(dirname "$0")"/config/waybar "$HOME/.config/"
 
+echo "Copying Kitty configurations..."
+cp -r "$(dirname "$0")"/config/kitty "$HOME/.config/"
+
 # The user mentioned themes.zip will be sent later, so add a placeholder for now.
 echo "Creating ~/.themes directory if it doesn't exist..."
 mkdir -p "$HOME/.themes"
@@ -221,6 +224,14 @@ mkdir -p "$HOME/.themes"
 echo "Copying themes..."
 cp -r "$(dirname "$0")"/themes/* "$HOME/.themes/"
 echo "Theme files have been copied to ~/.themes."
+
+echo "Installing JetBrains Mono fonts..."
+mkdir -p "$HOME/.local/share/fonts"
+cp -r "$(dirname "$0")"/fonts/* "$HOME/.local/share/fonts/"
+if command_exists fc-cache; then
+  fc-cache -f
+  echo "Font cache updated."
+fi
 
 echo "Applying GTK theme using gsettings..."
 if command_exists gsettings; then

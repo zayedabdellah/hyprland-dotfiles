@@ -149,8 +149,14 @@ PKG_NAMES[qt6ct_ubuntu]="qt6ct"
 PKG_NAMES[qt6ct_fedora]="qt6ct"
 PKG_NAMES[qt6ct_gentoo]="dev-qt/qt6ct"
 
+PKG_NAMES[fish_arch]="fish"
+PKG_NAMES[fish_debian]="fish"
+PKG_NAMES[fish_ubuntu]="fish"
+PKG_NAMES[fish_fedora]="fish"
+PKG_NAMES[fish_gentoo]="app-shells/fish"
+
 # List of core dependencies to check
-CORE_DEPS=("hyprland" "waybar" "kitty" "thunar" "rofi" "brave-browser" "hyprshutdown" "hyprlock" "grim" "slurp" "wl-copy" "pipewire" "brightnessctl" "playerctl" "swaync" "awww-daemon" "hyprpolkitagent" "nwg-look" "kvantum" "qt6ct")
+CORE_DEPS=("hyprland" "waybar" "kitty" "thunar" "rofi" "brave-browser" "hyprshutdown" "hyprlock" "grim" "slurp" "wl-copy" "pipewire" "brightnessctl" "playerctl" "swaync" "awww-daemon" "hyprpolkitagent" "nwg-look" "kvantum" "qt6ct" "fish")
 
 INSTALL_COMMANDS=()
 
@@ -216,6 +222,9 @@ cp -r "$(dirname "$0")"/config/waybar "$HOME/.config/"
 
 echo "Copying Kitty configurations..."
 cp -r "$(dirname "$0")"/config/kitty "$HOME/.config/"
+
+echo "Copying Fish configurations..."
+cp -r "$(dirname "$0")"/config/fish "$HOME/.config/"
 
 # The user mentioned themes.zip will be sent later, so add a placeholder for now.
 echo "Creating ~/.themes directory if it doesn't exist..."

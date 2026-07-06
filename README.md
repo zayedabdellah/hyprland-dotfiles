@@ -85,6 +85,7 @@ The following applications are used in these configurations:
 *   **nwg-look**: A GTK3 settings editor for wlroots-based compositors.
 *   **Kvantum**: A SVG-based theme engine for Qt.
 *   **qt6ct**: Qt6 Configuration Tool.
+*   **fish**: A smart and user-friendly command line shell.
 
 ## Contributing
 

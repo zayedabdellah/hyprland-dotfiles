@@ -226,6 +226,12 @@ cp -r "$(dirname "$0")"/config/kitty "$HOME/.config/"
 echo "Copying Fish configurations..."
 cp -r "$(dirname "$0")"/config/fish "$HOME/.config/"
 
+echo "Copying Rofi configurations..."
+cp -r "$(dirname "$0")"/config/rofi "$HOME/.config/"
+
+echo "Copying SwayNC configurations..."
+cp -r "$(dirname "$0")"/config/swaync "$HOME/.config/"
+
 # The user mentioned themes.zip will be sent later, so add a placeholder for now.
 echo "Creating ~/.themes directory if it doesn't exist..."
 mkdir -p "$HOME/.themes"

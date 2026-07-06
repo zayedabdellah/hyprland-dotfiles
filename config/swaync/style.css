@@ -1,0 +1,109 @@
+/* SwayNC Style based on Waybar's Gruvbox theme */
+
+@define-color bg_dark #0d0f12;
+@define-color torii_orange #ff4f27;
+@define-color path_grey #62747f;
+@define-color soft_amber #e88d67;
+@define-color weathered_red #b83a1b;
+@define-color deep_shadow #21252d;
+@define-color text_muted #888888;
+
+* {
+    font-family: "JetBrains Mono", sans-serif;
+    font-size: 11pt;
+}
+
+/* --- FLOATING NOTIFICATIONS (The Popups) --- */
+.floating-notifications .notification {
+    background-color: @bg_dark;
+    border: 2px solid @torii_orange;
+    border-radius: 12px;
+    margin: 10px;
+    padding: 0px;
+}
+
+/* --- CONTROL CENTER (The Sidebar) --- */
+#control-center {
+    background-color: @bg_dark;
+    border: 2px solid @torii_orange;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* --- INDIVIDUAL NOTIFICATION CARDS (Inside Control Center & Popups) --- */
+.notification {
+    background-color: @bg_dark;
+    border-radius: 12px;
+}
+
+/* The wrapper row inside the containers */
+#notification-row {
+    font-family: "JetBrains Mono", sans-serif;
+    outline: none;
+    margin: 5px;
+}
+
+/* Urgent / Critical Notification overrides */
+#notification-row.critical .notification {
+    border-color: @weathered_red;
+    background-color: #1a0f11; /* Dark tint with red undertone */
+}
+
+#notification-row.low .notification {
+    border-color: @path_grey;
+}
+
+/* Text and inner content styling */
+#notification-icon {
+    margin: 10px;
+}
+
+#notification-body {
+    font-family: "JetBrains Mono", sans-serif;
+    color: #ffffff;
+}
+
+#notification-title {
+    font-family: "JetBrains Mono", sans-serif;
+    color: @torii_orange;
+    font-weight: bold;
+}
+
+#notification-action-button {
+    background-color: @torii_orange;
+    color: @bg_dark;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+/* --- WIDGETS & BUTTONS --- */
+#control-center-clear-all-button {
+    background-color: @weathered_red;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+#control-center-dnd-button {
+    background-color: @path_grey;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
+#control-center-dnd-button.active {
+    background-color: @torii_orange;
+}
+
+#control-center-title {
+    color: @torii_orange;
+    font-weight: bold;
+    margin: 10px;
+}
+
+#control-center-notifications {
+    margin: 5px;
+}

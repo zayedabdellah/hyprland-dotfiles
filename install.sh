@@ -136,5 +136,15 @@ if [ -d "$SCRIPT_DIR" ]; then
     echo -e "${GREEN}Done!${NC} Scripts installed."
 fi
 
+# Apply GTK settings
+echo -e "${YELLOW}Applying GTK settings...${NC}"
+if command -v gsettings >/dev/null 2>&1; then
+    gsettings set org.gnome.desktop.interface gtk-theme 'gruvbox-dark-gtk'
+    gsettings set org.gnome.desktop.interface font-name 'JetBrainsMono Nerd Font 11'
+    gsettings set org.gnome.desktop.interface document-font-name 'JetBrainsMono Nerd Font 11'
+    gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrainsMono Nerd Font 11'
+    echo -e "${GREEN}Done!${NC} GTK settings applied."
+fi
+
 echo -e "\n${GREEN}Installation Complete!${NC}"
 echo -e "Please restart Hyprland to apply the changes."

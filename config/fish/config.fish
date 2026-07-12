@@ -14,5 +14,6 @@ set -gx XDG_SESSION_TYPE wayland
 set -gx QT_AUTO_SCREEN_SCALE_FACTOR 0
 
 fish_add_path ~/go/bin
+fish_add_path ~/.local/bin
 
 alias wine="prime-run mangohud /home/zayed/.local/share/GE/GE-Proton11-1/files/bin/wine"

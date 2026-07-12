@@ -6,7 +6,7 @@
   "spacing": 4,
   "modules-left": ["hyprland/workspaces", "hyprland/window", "tray"],
   "modules-center": ["clock"],
-  "modules-right": ["cpu", "memory", "wireplumber#sink", "backlight", "battery"],
+  "modules-right": ["cpu", "memory", "wireplumber#sink", "backlight", "network", "battery"],
   
   "hyprland/workspaces": { 
     "disable-scroll": true, 
@@ -47,6 +47,18 @@
   "backlight": { 
     "interval": 1, 
     "format": "󰃠 {percent}%" 
+  },
+  "network": {
+    "interface": "wlp3s0",
+    "format-wifi": " {essid}",
+    "format-ethernet": "󰈀  {ipaddr}",
+    "format-linked": "󰈀  {ifname} (No IP)",
+    "format-disconnected": "󰖪",
+    "tooltip-format": "{ifname} via {gwaddr} ",
+    "tooltip-format-wifi": "{essid} ({signaldBm}dBm) ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 20,
+    "on-click": "kitty -e nmtui"
   },
   
   "battery": { 

@@ -21,7 +21,7 @@
 /* Global window baseline—completely transparent to remove all black strips */
 window#waybar {
   background: transparent;
-  font-family: "JetBrains Mono", sans-serif;
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
   font-size: 11pt;
 }
 
@@ -132,4 +132,15 @@ window#waybar.media-bar {
 
 #battery.charging * {
   color: #27ff4f;
+}
+#network {
+  border: 2pt solid @torii_orange;
+  background: transparent;
+  padding: 0 6pt;
+  margin: 3pt 0;
+}
+#network.disconnected {
+  border: 2pt solid @path_grey;
+  color: @text_muted;
+  padding: 0 8pt; /* Keeps the border balanced when only the icon shows */
 }

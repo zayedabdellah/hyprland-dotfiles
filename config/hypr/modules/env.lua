@@ -16,6 +16,7 @@ hl.env("CLUTTER_BACKEND", "wayland")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+hl.env("SHELL", "/usr/bin/fish")
 
 -- QT Specific Tuning (Split Scaling Strategy) --
 hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "0")       -- Keep this at 0

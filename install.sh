@@ -42,9 +42,12 @@ declare -A ARCH_PKGS=(
     ["playerctl"]="playerctl"
     ["nwg-look"]="nwg-look"
     ["kvantummanager"]="kvantum"
+    ["hyprpaper"]="hyprpaper"
+    ["qt6ct"]="qt6ct"
+    ["qt5ct"]="qt5ct"
 )
 
-COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager")
+COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager" "hyprpaper" "qt6ct" "qt5ct")
 MISSING_PKGS=()
 
 echo -e "\n${YELLOW}Checking for required components...${NC}"
@@ -86,6 +89,7 @@ echo -e "\n${YELLOW}Creating configuration directories...${NC}"
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.themes"
 mkdir -p "$HOME/.local/share/fonts"
+mkdir -p "$HOME/.local/bin"
 
 # Copy configurations
 echo -e "${YELLOW}Copying dotfiles to ~/.config/...${NC}"
@@ -104,6 +108,9 @@ THEME_DIR="$(dirname "$0")/themes"
 if [ -d "$THEME_DIR" ]; then
     cp -rv "$THEME_DIR"/* "$HOME/.themes/"
     echo -e "${GREEN}Done!${NC} Themes copied."
+    echo -e "${YELLOW}Setting up Kvantum themes...${NC}"
+    mkdir -p "$HOME/.config/Kvantum"
+    cp -rv "$THEME_DIR"/gruvbox-kvantum "$HOME/.config/Kvantum/"
 fi
 
 # Copy fonts
@@ -115,6 +122,15 @@ if [ -d "$FONT_DIR" ]; then
         fc-cache -f
         echo -e "${GREEN}Done!${NC} Font cache updated."
     fi
+fi
+
+# Copy scripts
+echo -e "${YELLOW}Installing scripts...${NC}"
+SCRIPT_DIR="$(dirname "$0")/scripts"
+if [ -d "$SCRIPT_DIR" ]; then
+    cp -rv "$SCRIPT_DIR"/* "$HOME/.local/bin/"
+    chmod +x "$HOME/.local/bin/"*
+    echo -e "${GREEN}Done!${NC} Scripts installed."
 fi
 
 echo -e "\n${GREEN}Installation Complete!${NC}"

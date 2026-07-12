@@ -42,7 +42,7 @@ declare -A ARCH_PKGS=(
     ["playerctl"]="playerctl"
     ["nwg-look"]="nwg-look"
     ["kvantummanager"]="kvantum"
-    ["hyprpaper"]="hyprpaper"
+    ["awww-daemon"]="awww"
     ["qt6ct"]="qt6ct"
     ["qt5ct"]="qt5ct"
     ["pavucontrol-qt"]="pavucontrol-qt"
@@ -50,7 +50,7 @@ declare -A ARCH_PKGS=(
     ["btop"]="btop"
 )
 
-COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager" "hyprpaper" "qt6ct" "qt5ct" "pavucontrol-qt" "nmtui" "btop")
+COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager" "awww-daemon" "qt6ct" "qt5ct" "pavucontrol-qt" "nmtui" "btop")
 MISSING_PKGS=()
 
 echo -e "\n${YELLOW}Checking for required components...${NC}"

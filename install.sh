@@ -2,7 +2,7 @@
 
 # --- UNIVERSAL HYPRLAND DOTFILES INSTALLER ---
 # This script is meant to COPY AND PASTE your configurations.
-# It assumes you already have Hyprland and its components installed.
+# Now with Arch Linux auto-install support (excluding Brave).
 
 set -e # Exit on error
 
@@ -25,43 +25,59 @@ check_cmd() {
     fi
 }
 
-# List of essential components to check
-COMPONENTS=(
-    "hyprland"
-    "waybar"
-    "kitty"
-    "fish"
-    "rofi"
-    "swaync"
-    "hyprlock"
-    "thunar"
-    "brave"
-    "grim"
-    "slurp"
-    "wl-copy"
-    "brightnessctl"
-    "playerctl"
-    "nwg-look"
-    "kvantummanager"
+# Mapping of commands to Arch Linux package names
+declare -A ARCH_PKGS=(
+    ["hyprland"]="hyprland"
+    ["waybar"]="waybar"
+    ["kitty"]="kitty"
+    ["fish"]="fish"
+    ["rofi"]="rofi"
+    ["swaync"]="swaync"
+    ["hyprlock"]="hyprlock"
+    ["thunar"]="thunar"
+    ["grim"]="grim"
+    ["slurp"]="slurp"
+    ["wl-copy"]="wl-clipboard"
+    ["brightnessctl"]="brightnessctl"
+    ["playerctl"]="playerctl"
+    ["nwg-look"]="nwg-look"
+    ["kvantummanager"]="kvantum"
 )
 
-MISSING_COUNT=0
+COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager")
+MISSING_PKGS=()
 
 echo -e "\n${YELLOW}Checking for required components...${NC}"
 for cmd in "${COMPONENTS[@]}"; do
     if ! check_cmd "$cmd"; then
-        ((MISSING_COUNT++))
+        MISSING_PKGS+=("${ARCH_PKGS[$cmd]}")
     fi
 done
 
-if [ $MISSING_COUNT -gt 0 ]; then
-    echo -e "\n${RED}Warning:${NC} $MISSING_COUNT components are missing."
-    echo -e "Please install them using your package manager (e.g., apt, pacman, emerge) before continuing."
-    read -p "Do you want to proceed with copying the config files anyway? (y/n) " -n 1 -r
-    echo
-    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-        echo "Installation aborted."
-        exit 1
+# Check for Brave separately (as requested to exclude from auto-install)
+if ! check_cmd "brave"; then
+    echo -e "${YELLOW}Note:${NC} Brave Browser is missing but will not be auto-installed."
+fi
+
+# Arch Auto-Install Logic
+if [ ${#MISSING_PKGS[@]} -gt 0 ]; then
+    if [ -f /etc/arch-release ]; then
+        echo -e "\n${YELLOW}Arch Linux detected!${NC}"
+        read -p "Would you like to auto-install the missing packages? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo -e "${YELLOW}Installing missing packages...${NC}"
+            sudo pacman -S --needed --noconfirm "${MISSING_PKGS[@]}"
+        fi
+    else
+        echo -e "\n${RED}Warning:${NC} ${#MISSING_PKGS[@]} components are missing."
+        echo -e "Please install them using your package manager before continuing."
+        read -p "Do you want to proceed with copying the config files anyway? (y/n) " -n 1 -r
+        echo
+        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+            echo "Installation aborted."
+            exit 1
+        fi
     fi
 fi
 
@@ -74,12 +90,11 @@ mkdir -p "$HOME/.local/share/fonts"
 # Copy configurations
 echo -e "${YELLOW}Copying dotfiles to ~/.config/...${NC}"
 CONFIG_DIR="$(dirname "$0")/config"
-
 if [ -d "$CONFIG_DIR" ]; then
     cp -rv "$CONFIG_DIR"/* "$HOME/.config/"
     echo -e "${GREEN}Done!${NC} Configurations copied."
 else
-    echo -e "${RED}Error:${NC} 'config' directory not found in the current folder."
+    echo -e "${RED}Error:${NC} 'config' directory not found."
     exit 1
 fi
 

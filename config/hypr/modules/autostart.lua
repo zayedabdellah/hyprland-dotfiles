@@ -3,7 +3,7 @@
 -------------------
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("echo 'Xft.dpi: 192' | xrdb -merge")
+    hl.exec_cmd("echo 'Xft.dpi: 96' | xrdb -merge")
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("gentoo-pipewire-launcher")
     hl.exec_cmd("waybar")

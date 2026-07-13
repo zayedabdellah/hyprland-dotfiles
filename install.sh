@@ -81,7 +81,14 @@ if [ ${#MISSING_PKGS[@]} -gt 0 ]; then
         fi
     else
         echo -e "\n${RED}Warning:${NC} ${#MISSING_PKGS[@]} components are missing."
-        echo -e "Please install them using your package manager before continuing."
+        echo -e "Since you are not on Arch Linux, please install the following packages manually:"
+        echo -e "${YELLOW}-----------------------------------------${NC}"
+        for pkg in "${MISSING_PKGS[@]}"; do
+            echo -e " - $pkg"
+        done
+        echo -e "${YELLOW}-----------------------------------------${NC}"
+        echo -e "Note: Package names may vary depending on your distribution."
+        
         read -p "Do you want to proceed with copying the config files anyway? (y/n) " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then

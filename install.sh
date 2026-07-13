@@ -166,7 +166,7 @@ if command -v awww >/dev/null 2>&1; then
         awww-daemon &
         sleep 2
     fi
-    awww img "$HOME/.config/hypr/wallpapers/wallpaper.jpg"
+    awww img "$HOME/.config/hypr/wallpapers/torii.jpg"
     echo -e "${GREEN}Done!${NC} Wallpaper set."
 fi
 

@@ -150,6 +150,18 @@ if command -v gsettings >/dev/null 2>&1; then
     echo -e "${GREEN}Done!${NC} GTK settings applied."
 fi
 
+# Apply Wallpaper using awww
+echo -e "${YELLOW}Setting wallpaper...${NC}"
+if command -v awww >/dev/null 2>&1; then
+    # Start daemon in background if not running
+    if ! pgrep -x "awww-daemon" > /dev/null; then
+        awww-daemon &
+        sleep 2
+    fi
+    awww img "$HOME/.config/hypr/wallpapers/torii.jpg"
+    echo -e "${GREEN}Done!${NC} Wallpaper set."
+fi
+
 echo -e "\n${GREEN}Installation Complete!${NC}"
 echo -e "${YELLOW}Note:${NC} To apply the Chrome theme, go to chrome://extensions, enable 'Developer mode', and 'Load unpacked' from ~/.config/google-chrome/themes/fjofdcgahcnlkdjapcbeonbnmjdnfcki"
 echo -e "Please restart Hyprland to apply the changes."

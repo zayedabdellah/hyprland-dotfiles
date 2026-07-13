@@ -48,9 +48,13 @@ declare -A ARCH_PKGS=(
     ["pavucontrol-qt"]="pavucontrol-qt"
     ["nmtui"]="networkmanager"
     ["btop"]="btop"
+    ["noto-fonts"]="noto-fonts"
+    ["noto-fonts-cjk"]="noto-fonts-cjk"
+    ["noto-fonts-emoji"]="noto-fonts-emoji"
+    ["noto-fonts-extra"]="noto-fonts-extra"
 )
 
-COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager" "awww-daemon" "qt6ct" "qt5ct" "pavucontrol-qt" "nmtui" "btop")
+COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager" "awww-daemon" "qt6ct" "qt5ct" "pavucontrol-qt" "nmtui" "btop" "noto-fonts" "noto-fonts-cjk" "noto-fonts-emoji" "noto-fonts-extra")
 MISSING_PKGS=()
 
 echo -e "\n${YELLOW}Checking for required components...${NC}"

@@ -43,6 +43,7 @@ declare -A ARCH_PKGS=(
     ["nwg-look"]="nwg-look"
     ["kvantummanager"]="kvantum"
     ["awww-daemon"]="awww"
+    ["polkit-kde-agent"]="polkit-kde-agent"
     ["qt6ct"]="qt6ct"
     ["qt5ct"]="qt5ct"
     ["pavucontrol-qt"]="pavucontrol-qt"
@@ -54,7 +55,7 @@ declare -A ARCH_PKGS=(
     ["noto-fonts-extra"]="noto-fonts-extra"
 )
 
-COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager" "awww-daemon" "qt6ct" "qt5ct" "pavucontrol-qt" "nmtui" "btop" "noto-fonts" "noto-fonts-cjk" "noto-fonts-emoji" "noto-fonts-extra")
+COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager" "awww-daemon" "qt6ct" "qt5ct" "pavucontrol-qt" "nmtui" "btop" "noto-fonts" "noto-fonts-cjk" "noto-fonts-emoji" "noto-fonts-extra" "polkit-kde-agent")
 MISSING_PKGS=()
 
 echo -e "\n${YELLOW}Checking for required components...${NC}"
@@ -165,7 +166,7 @@ if command -v awww >/dev/null 2>&1; then
         awww-daemon &
         sleep 2
     fi
-    awww img "$HOME/.config/hypr/wallpapers/torii.jpg"
+    awww img "$HOME/.config/hypr/wallpapers/wallpaper.jpg"
     echo -e "${GREEN}Done!${NC} Wallpaper set."
 fi
 

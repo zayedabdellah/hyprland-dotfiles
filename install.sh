@@ -151,4 +151,5 @@ if command -v gsettings >/dev/null 2>&1; then
 fi
 
 echo -e "\n${GREEN}Installation Complete!${NC}"
+echo -e "${YELLOW}Note:${NC} To apply the Chrome theme, go to chrome://extensions, enable 'Developer mode', and 'Load unpacked' from ~/.config/google-chrome/themes/fjofdcgahcnlkdjapcbeonbnmjdnfcki"
 echo -e "Please restart Hyprland to apply the changes."

@@ -43,7 +43,6 @@ declare -A ARCH_PKGS=(
     ["nwg-look"]="nwg-look"
     ["kvantummanager"]="kvantum"
     ["awww-daemon"]="awww"
-    ["polkit-kde-agent"]="polkit-kde-agent"
     ["qt6ct"]="qt6ct"
     ["qt5ct"]="qt5ct"
     ["pavucontrol-qt"]="pavucontrol-qt"
@@ -53,9 +52,11 @@ declare -A ARCH_PKGS=(
     ["noto-fonts-cjk"]="noto-fonts-cjk"
     ["noto-fonts-emoji"]="noto-fonts-emoji"
     ["noto-fonts-extra"]="noto-fonts-extra"
+    ["hyprpolkitagent"]="hyprpolkitagent"
+    ["polkit-kde-agent"]="polkit-kde-agent"
 )
 
-COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager" "awww-daemon" "qt6ct" "qt5ct" "pavucontrol-qt" "nmtui" "btop" "noto-fonts" "noto-fonts-cjk" "noto-fonts-emoji" "noto-fonts-extra" "polkit-kde-agent")
+COMPONENTS=("hyprland" "waybar" "kitty" "fish" "rofi" "swaync" "hyprlock" "thunar" "grim" "slurp" "wl-copy" "brightnessctl" "playerctl" "nwg-look" "kvantummanager" "awww-daemon" "qt6ct" "qt5ct" "pavucontrol-qt" "nmtui" "btop" "noto-fonts" "noto-fonts-cjk" "noto-fonts-emoji" "noto-fonts-extra" "hyprpolkitagent" "polkit-kde-agent")
 MISSING_PKGS=()
 
 echo -e "\n${YELLOW}Checking for required components...${NC}"
@@ -158,17 +159,7 @@ if command -v gsettings >/dev/null 2>&1; then
     echo -e "${GREEN}Done!${NC} GTK settings applied."
 fi
 
-# Apply Wallpaper using awww
-echo -e "${YELLOW}Setting wallpaper...${NC}"
-if command -v awww >/dev/null 2>&1; then
-    # Start daemon in background if not running
-    if ! pgrep -x "awww-daemon" > /dev/null; then
-        awww-daemon &
-        sleep 2
-    fi
-    awww img "$HOME/.config/hypr/wallpapers/torii.jpg"
-    echo -e "${GREEN}Done!${NC} Wallpaper set."
-fi
+# Note: Wallpaper is applied automatically via autostart.lua once you log into Hyprland.
 
 echo -e "\n${GREEN}Installation Complete!${NC}"
 echo -e "${YELLOW}Note:${NC} To apply the Chrome theme, go to chrome://extensions, enable 'Developer mode', and 'Load unpacked' from ~/.config/google-chrome/themes/fjofdcgahcnlkdjapcbeonbnmjdnfcki"

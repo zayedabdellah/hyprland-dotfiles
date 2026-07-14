@@ -1,4 +1,4 @@
-# Hyprland Dotfiles
+# Dotfiles
 
 This repository contains my personal Hyprland and Waybar configurations, along with an installation script to help set them up on your system. The configurations are primarily written in Lua for Hyprland, leveraging its native Lua scripting capabilities.
 
@@ -13,8 +13,8 @@ To set up these dotfiles, follow these steps:
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/YOUR_USERNAME/hyprland-dotfiles.git
-    cd hyprland-dotfiles
+    git clone https://github.com/zayedabdellah/dotfiles.git
+    cd dotfiles
     ```
 
 2.  **Run the installation script:**

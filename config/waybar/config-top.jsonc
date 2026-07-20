@@ -9,8 +9,7 @@
     "exec": "playerctl metadata --format '{{ artist }} - {{ title }}'",
     "interval": 2,
     "format": "󰎈 {}",
-    "max-length": 50,
-    "on-click": "playerctl play-pause",
-    "on-click-right": "playerctl play-pause"
+    "on-click": "kitty -e cava",
+    "on-click-right": "kitty -e cava"
   }
 }

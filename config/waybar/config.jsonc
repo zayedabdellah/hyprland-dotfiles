@@ -2,9 +2,9 @@
   "name": "bottom-bar",
   "layer": "top",
   "position": "bottom",
-  "height": 34, 
+  "height": 34,
   "spacing": 4,
-  "modules-left": ["hyprland/workspaces", "hyprland/window", "tray"],
+  "modules-left": ["hyprland/workspaces", "hyprland/window", "power-profiles-daemon", "tray"],
   "modules-center": ["clock"],
   "modules-right": ["cpu", "memory", "wireplumber#sink", "backlight", "network", "battery"],
   
@@ -12,7 +12,7 @@
     "disable-scroll": true, 
     "all-outputs": true, 
     "format": "{name}", 
-    "on-click": "hyprctl dispatch workspace {name}" 
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"{name}\" })'"
   },
   
   "hyprland/window": { 
@@ -37,7 +37,7 @@
     "on-click": "kitty -e btop" 
   },
   
-    "wireplumber#sink": { 
+  "wireplumber#sink": {
     "format": " {volume}%", 
     "interval": 1,
     "on-click": "pavucontrol-qt", 
@@ -48,11 +48,12 @@
     "interval": 1, 
     "format": "󰃠 {percent}%" 
   },
+
   "network": {
-    "interface": "wlp3s0",
-    "format-wifi": " {essid}",
-    "format-ethernet": "󰈀  {ipaddr}",
-    "format-linked": "󰈀  {ifname} (No IP)",
+    "interface": "",
+    "format-wifi": "",
+    "format-ethernet": "󰈀",
+    "format-linked": "󰈀",
     "format-disconnected": "󰖪",
     "tooltip-format": "{ifname} via {gwaddr} ",
     "tooltip-format-wifi": "{essid} ({signaldBm}dBm) ",
@@ -60,15 +61,27 @@
     "max-length": 20,
     "on-click": "kitty -e nmtui"
   },
-  
+
   "battery": { 
     "format": " {capacity}%", 
-    "format-charging": "󱐋 {capacity}%" 
+    "format-charging": "󱐋 {capacity}%",
+    "interval": 1
   },
   
   "clock": { 
     "format": "{:%d/%m/%Y, %H:%M:%S}", 
     "interval": 1 
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power Profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "󰾆",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
   }
 }
-

@@ -16,8 +16,8 @@ while true; do
             
             # Force window manager to recalculate layout positions instantly
             if command -v hyprctl &> /dev/null; then
-                hyprctl dispatch setprop active opaque toggle &> /dev/null
-                hyprctl dispatch setprop active opaque toggle &> /dev/null
+                hyprctl setprop active opaque toggle &> /dev/null
+                hyprctl setprop active opaque toggle &> /dev/null
             fi
         fi
     fi

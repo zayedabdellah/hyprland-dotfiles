@@ -1,0 +1,67 @@
+# Local machine selection and installer state
+config/hypr/machine.local.lua
+config/machine.local.*
+.dotfiles-state/
+
+# Generated application state
+**/*.log
+**/*.cache
+**/*.tmp
+**/Cache/
+**/GPUCache/
+**/Code Cache/
+**/Singleton*
+**/Crash Reports/
+**/Session Storage/
+**/Sessions/
+**/Service Worker/
+**/Extension State/
+**/Extension Rules/
+**/IndexedDB/
+**/Local Storage/
+**/WebStorage/
+
+# Backups and rollback copies
+**/*.bk
+**/*.bak
+**/*.old
+**/*.orig
+**/*.previous
+**/backup/
+**/backups/
+**/restore/
+**/rollback/
+
+# Private emulator and browser data
+config/BraveSoftware/
+config/google-chrome/
+config/chromium/
+**/Default/
+**/Profile */
+**/Local State
+**/Preferences
+**/Secure Preferences
+**/Login Data*
+**/Cookies*
+**/History*
+**/Web Data*
+**/Visited Links
+**/Current Tabs
+**/Current Session
+**/Last Tabs
+**/Last Session
+**/Bookmarks
+**/Favicons
+**/Top Sites
+**/Network Action Predictor
+**/TransportSecurity
+**/Sync Data/
+**/Extension Cookies
+config/optional/**/roms/
+config/optional/**/bios/
+config/optional/**/saves/
+config/optional/**/states/
+config/optional/**/cores/
+config/optional/**/thumbnails/
+config/optional/**/playlists/
+config/optional/**/profiles/

@@ -1,2 +1,43 @@
+configuration {
+    modi: "run,drun";
+    icon-theme: "Oranchelo";
+    show-icons: true;
+    terminal: "kitty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "   Apps ";
+    display-run: "   Run ";
+    sidebar-mode: true;
+}
 
-@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
+@theme "~/.config/rofi/themes/gruvbox-dark-hard.rasi"
+
+* {
+    font: "JetBrains Mono 11";
+}
+
+window {
+    width: 45%;          /* Widened profile to give text plenty of breathing room */
+    border: 2px;
+    padding: 12px;
+}
+
+entry {
+    placeholder: "Search...";
+    padding: 6px;
+}
+
+listview {
+    lines: 8;
+    spacing: 2px;
+}
+
+element {
+    padding: 6px 10px;
+}
+
+element-icon {
+    size: 20px;
+}

@@ -2,41 +2,62 @@
 ---- ENVIRONMENT VARIABLES ----
 -------------------------------
 
+local machine = require("machine")
+
+local function set_env(name)
+    if machine.env[name] ~= nil then
+        hl.env(name, machine.env[name])
+    end
+end
+
+-- Waybar consumes this selected-profile value. Generic leaves it unset so the
+-- launcher can use the system's active route/interface.
+if machine.network_interface ~= nil and machine.network_interface ~= "" then
+    hl.env("DOTFILES_NETWORK_INTERFACE", machine.network_interface)
+end
+hl.env("DOTFILES_MACHINE_PROFILE", machine.name)
+
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
-hl.env("XCURSOR_SIZE", "48")       -- Doubled for 200% screen scale
-hl.env("HYPRCURSOR_SIZE", "48")   -- Doubled for 200% screen scale
+set_env("XCURSOR_THEME")
+set_env("XCURSOR_SIZE")
+set_env("HYPRCURSOR_THEME")
+set_env("HYPRCURSOR_SIZE")
 
 -- Toolkit Backend --
-hl.env("GDK_BACKEND", "wayland,x11,*")
-hl.env("QT_QPA_PLATFORM", "wayland;xcb")
-hl.env("SDL_VIDEODRIVER", "wayland")
-hl.env("CLUTTER_BACKEND", "wayland")
+set_env("GDK_BACKEND")
+set_env("QT_QPA_PLATFORM")
+-- hl.env("SDL_VIDEODRIVER", "wayland")
+set_env("CLUTTER_BACKEND")
 
 -- XDG Specifications --
-hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
-hl.env("XDG_SESSION_TYPE", "wayland")
-hl.env("XDG_SESSION_DESKTOP", "Hyprland")
-hl.env("SHELL", "/usr/bin/fish")
+set_env("XDG_CURRENT_DESKTOP")
+set_env("XDG_SESSION_TYPE")
+set_env("XDG_SESSION_DESKTOP")
 
--- QT Specific Tuning (Split Scaling Strategy) --
-hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "0")       -- Keep this at 0
-hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")         -- CHANGE THIS FROM "0" TO "1"
-hl.env("QT_SCALE_FACTOR_ROUNDING_POLICY", "PassThrough") -- ADD THIS LINE
-hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
-hl.env("QT_STYLE_OVERRIDE", "kvantum")
-hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
-hl.env("QT_NO_XDG_DESKTOP_PORTAL", "1")
+-- QT Specific Tuning (Keeps Native Qt Apps Unscaled) --
+set_env("QT_AUTO_SCREEN_SCALE_FACTOR")
+set_env("QT_ENABLE_HIGHDPI_SCALING")
+set_env("QT_QPA_PLATFORMTHEME")
+-- hl.env("QT_STYLE_OVERRIDE", "kvantum")
+set_env("QT_WAYLAND_DISABLE_WINDOWDECORATION")
+set_env("QT_NO_XDG_DESKTOP_PORTAL")
 
 -- GTK Specific Tuning --
-hl.env("GTK_THEME", "gruvbox-dark-gtk")
-hl.env("GDK_SCALE", "2")                     -- Forces explicit 200% scaling on GTK3/4 apps
+set_env("GTK_THEME")
+set_env("GDK_SCALE")
+
+-- GLOBAL XWAYLAND SCALING FIX --
+set_env("XFT_DPI")
 
 -- NVIDIA Support Variables --
-hl.env("LIBVA_DRIVER_NAME", "nvidia")
-hl.env("GBM_BACKEND", "nvidia-drm")
-hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
-hl.env("NVD_BACKEND", "direct")
-hl.env("WLR_DRM_NO_ATOMIC", "1")
+set_env("LIBVA_DRIVER_NAME")
+set_env("GBM_BACKEND")
+set_env("__GLX_VENDOR_LIBRARY_NAME")
+set_env("NVD_BACKEND")
+set_env("WLR_DRM_NO_ATOMIC")
+
+-- Steam Fixes --
+set_env("STEAM_FORCE_DESKTOPUI_SCALING")
 
 ---------------------------------
 ---- XWAYLAND SCALING FIX -------
@@ -45,6 +66,6 @@ hl.env("WLR_DRM_NO_ATOMIC", "1")
 -- This stops Hyprland from blurrily auto-stretching non-Wayland applications
 hl.config({
     xwayland = {
-        force_zero_scaling = true
+        force_zero_scaling = machine.xwayland.force_zero_scaling
     }
 })

@@ -1,0 +1,133 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "background": "#EAA810",
+          "foreground": "#1F2022",
+          "style": "plain",
+          "template": "\u26a1 ",
+          "type": "root"
+        },
+        {
+          "background": "transparent",
+          "foreground": "#FF6A00",
+          "style": "plain",
+          "template": "{{ if .WSL }}WSL at {{ end }}{{.Icon}} ",
+          "type": "os"
+        },
+        {
+          "background": "#FF6A00",
+          "foreground": "#1F2022",
+          "leading_diamond": "<transparent,#FF6A00>\ue0b0</>",
+          "options": {
+            "folder_icon": "",
+            "folder_separator_icon": "/",
+            "home_icon": "~",
+            "style": "agnoster_short"
+          },
+          "style": "diamond",
+          "template": " {{ .Path }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "path"
+        },
+        {
+          "background": "#005B99",
+          "foreground": "#FFCD00",
+          "leading_diamond": "<transparent,#005B99>\ue0b0</>",
+          "trailing_diamond": "\ue0b0",
+          "options": {
+            "display_mode": "context",
+            "fetch_virtual_env": true,
+            "fetch_version": true,
+            "home_enabled": true
+          },
+          "style": "diamond",
+          "template": "{{ if .Venv }} \ue235 {{ .Venv }} ({{ .Full }}) {{ else }} \ue235 {{ .Full }} {{ end }}",
+          "type": "python"
+        },
+        {
+          "background": "#7A828A",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#EAA810{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FF8A65{{ end }}",
+            "{{ if gt .Ahead 0 }}#FF6A00{{ end }}",
+            "{{ if gt .Behind 0 }}#FF6A00{{ end }}"
+          ],
+          "foreground": "#1F2022",
+          "leading_diamond": "<transparent,#7A828A>\ue0b0</>",
+          "trailing_diamond": "\ue0b0",
+          "options": {
+            "fetch_status": true
+          },
+          "style": "diamond",
+          "template": " \uf126 {{ .HEAD }}{{ if .Staging.Changed }}<#FF6F00> \uf046 {{ .Staging.String }}</>{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if gt .StashCount 0 }} \uf01c {{ .StashCount }}{{ end }} ",
+          "type": "git"
+        },
+        {
+          "background": "#34373C",
+          "foreground": "#F4F4F4",
+          "leading_diamond": "<transparent,#34373C>\ue0b0</>",
+          "options": {
+            "style": "dallas",
+            "threshold": 0
+          },
+          "style": "diamond",
+          "template": " {{ .FormattedMs }}s ",
+          "trailing_diamond": "\ue0b0",
+          "type": "executiontime"
+        },
+        {
+          "background": "#FF6A00",
+          "foreground": "#1F2022",
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": "<transparent> \uf12a</> {{ reason .Code }} ",
+          "type": "status"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "background": "#34373C",
+          "foreground": "#FF6A00",
+          "options": {
+            "time_format": "15:04:05"
+          },
+          "leading_diamond": "\ue0ba",
+          "trailing_diamond": "\ue0bc",
+          "style": "diamond",
+          "template": " \uf017 {{ .CurrentDate | date .Format }} ",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#F4F4F4",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#FF6A00{{ end }}"
+          ],
+          "options": {
+            "always_enabled": true
+          },
+          "style": "plain",
+          "template": "\u276f ",
+          "type": "status"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "console_title_template": "{{if .Root}} \u26a1 {{end}}{{.Folder | replace \"~\" \"\ud83c\udfda\" }} @ {{.HostName}}",
+  "version": 4
+}

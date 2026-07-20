@@ -1,0 +1,6 @@
+[General]
+theme=kvantum-dark
+
+[Applications]
+Default=filelight
+kvantum-dark=filelight

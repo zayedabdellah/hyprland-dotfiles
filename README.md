@@ -1,10 +1,36 @@
 # Dotfiles
 
-This repository contains my personal Hyprland and Waybar configurations, along with an installation script to help set them up on your system. The configurations are primarily written in Lua for Hyprland, leveraging its native Lua scripting capabilities.
+This repository contains a portable snapshot of the active desktop rice. The
+active configuration is the source of truth; backups, generated state, private
+profiles, browser profiles, and game content are intentionally excluded.
+
+The Hyprland configuration is modular Lua and keeps the active keybinds,
+startup commands, window rules, workspace behavior, Waybar actions, scripts,
+and appearance values intact.
 
 ## Prerequisites
 
 This script assumes you already have Hyprland installed and running. It will check for other necessary components and provide installation suggestions if they are missing. However, it is crucial that Hyprland itself is already operational.
+
+## Machine profiles
+
+The current laptop is represented by the exact first-class profile:
+
+```text
+config/hypr/profiles/zayed-laptop.lua
+  eDP-1 / 2560x1600@165 / position 0x0 / scale 2
+```
+
+`config/hypr/profiles/generic.lua` is the safe fallback. The laptop profile is
+never selected implicitly: choose it explicitly with
+`DOTFILES_MACHINE_PROFILE=zayed-laptop` or an ignored
+`config/hypr/machine.local.lua` based on
+`config/hypr/machine.local.lua.example`. Invalid profile names stop with a
+clear error.
+
+Waybar receives the selected profile's `DOTFILES_NETWORK_INTERFACE`. The
+laptop retains `wlp3s0`; generic systems use the active route interface or
+Waybar's own automatic selection.
 
 ## Installation
 
@@ -20,18 +46,22 @@ To set up these dotfiles, follow these steps:
 2.  **Run the installation script:**
 
     The `install.sh` script will:
-    *   Detect your Linux distribution.
-    *   Check for required applications (e.g., `kitty`, `waybar`, `rofi`, `grim`, `slurp`, `brightnessctl`, `playerctl`, `swaync`, `awww-daemon`, `hyprpolkitagent`, `hyprshutdown`).
-    *   If any applications are missing, it will provide copy-paste commands for common distributions (Arch, Debian, Ubuntu, Fedora, Gentoo) to install them. You will be prompted to install them manually or continue without them.
-    *   Copy the Hyprland and Waybar configuration files to `~/.config/hypr` and `~/.config/waybar` respectively.
-    *   Copy the theme files to `~/.themes`.
+    *   Check the current system for required applications (e.g., `kitty`,
+        `waybar`, `rofi`, `grim`, `slurp`, `brightnessctl`, `playerctl`,
+        `swaync`, `awww-daemon`, `hyprpolkitagent`, `hyprshutdown`).
+    *   Copy the approved core configuration to its XDG destination, including
+        hidden files.
+    *   Copy the approved configuration, theme, cursor, font, wallpaper, and
+        script assets to their corresponding XDG locations.
 
     ```bash
     chmod +x install.sh
     ./install.sh
     ```
 
-    **Important for Gentoo users:** If you are on Gentoo, the script will remind you to enable `hyproverlay` and accept keywords for the packages before running the `emerge` command.
+Optional modules are disabled unless explicitly requested with
+`--enable-optional MODULE`. Package installation, backup/restore behavior, and
+distribution-specific dependency handling remain separate future work.
 
 3.  **Restart Hyprland:**
 
@@ -49,7 +79,11 @@ The Waybar configuration is located in `~/.config/waybar/`. It includes `config.
 
 ### Themes
 
-Theme files (GTK, Qt Kvantum) are included and will be placed in `~/.themes/` by the installation script.
+GTK, Qt/Kvantum, cursor, browser-interface theme, font, and wallpaper assets
+are included under `themes/`, `icons/`, `config/brave/`, `fonts/`, and
+`config/hypr/`. The confirmed Torii image is included at
+`config/hypr/wallpapers/torii.jpg`; the Hyprlock wrapper still uses a
+screenshot fallback when the image is unavailable.
 
 #### Theme Setup Instructions
 
@@ -58,7 +92,9 @@ To ensure your apps pick up the themes correctly:
 2.  **Qt Apps:** 
     *   Open **Kvantum Manager**.
     *   Go to **Change/Delete Theme**.
-    *   Select **gruvbox-kvantum** from the list and click **Use this theme**.
+    *   Select the installed **kvantum-dark** theme from the list and click
+        **Use this theme**. The repository does not bundle the unlicensed
+        Gruvbox Kvantum asset.
     *   Open **qt6ct** (or `qt5ct` if using Qt5) and ensure the **Style** is set to **kvantum**.
 
 ## Dependencies
@@ -86,6 +122,27 @@ The following applications are used in these configurations:
 *   **Kvantum**: A SVG-based theme engine for Qt.
 *   **qt6ct**: Qt6 Configuration Tool.
 *   **fish**: A smart and user-friendly command line shell.
+*   **Papirus-Dark**: Required icon theme for GTK, Qt, and xsettingsd.
+
+Rofi preserves Oranchelo as the preferred icon theme without bundling it. The
+Rofi launcher detects Oranchelo and falls back to the required Papirus-Dark
+theme when Oranchelo is unavailable. If neither theme is installed, Rofi still
+starts with its default icon behavior.
+
+## Optional modules
+
+RetroArch appearance settings, Sunshine, Dolphin Emulator, Suyu, GOverlay,
+vkBasalt, vkSumi, Pavucontrol preferences, and `mimeapps.list` are stored
+under `config/optional/` and are not part of the default rice deployment.
+ROMs, BIOS files, saves, states, downloaded cores, thumbnails, logs, caches,
+private emulator paths, and complete Brave profiles are not included.
+
+## Compatibility workaround
+
+The unsafe `xhost +SI:localuser:root` command is not part of the default
+autostart. Only if a specific legacy X11 application requires root access,
+apply that command manually for the duration of that session and remove the
+access afterward. It is not installed or automated by this repository.
 
 ## Contributing
 

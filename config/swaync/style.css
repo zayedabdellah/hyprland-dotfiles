@@ -61,14 +61,21 @@
 #notification-body {
     font-family: "JetBrains Mono", sans-serif;
     color: #ffffff;
+
+    /* FORCE TEXT TO WRAP INSTEAD OF TRUNCATING/CUTTING OFF */
+    word-wrap: break-word;
+    white-space: normal;
 }
 
 #notification-title {
     font-family: "JetBrains Mono", sans-serif;
     color: @torii_orange;
     font-weight: bold;
-}
 
+    /* Allow long titles to wrap cleanly too */
+    word-wrap: break-word;
+    white-space: normal;
+}
 #notification-action-button {
     background-color: @torii_orange;
     color: @bg_dark;
@@ -106,4 +113,44 @@
 
 #control-center-notifications {
     margin: 5px;
+}
+
+/* --- CUSTOM OSD POPUP STYLING --- */
+
+/* Targets the notify-send tags we defined in the script */
+.notification.osd-vol,
+.notification.osd-bright {
+    background-color: @bg_dark;
+    border: 2px solid @soft_amber;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0px 4px 12px @deep_shadow;
+}
+
+/* Elegant header styling */
+.notification.osd-vol #notification-title,
+.notification.osd-bright #notification-title {
+    font-size: 10pt;
+    font-weight: bold;
+    color: @path_grey; /* Subtle title text */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Beautiful custom OSD HUD Layout */
+.notification.osd-vol #notification-body,
+.notification.osd-bright #notification-body {
+    font-size: 15pt;
+    color: @torii_orange; /* Strong theme color accent */
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+/* Clean fallback to hide elements in GTK layout engines */
+.notification.osd-vol #notification-icon,
+.notification.osd-bright #notification-icon,
+.notification.osd-vol #notification-action-button,
+.notification.osd-bright #notification-action-button {
+    opacity: 0;
 }

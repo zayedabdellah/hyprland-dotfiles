@@ -2,16 +2,18 @@
 ---- MONITORS ----
 ------------------
 
--- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+local machine = require("machine")
+
 hl.monitor({
-    output   = "",
-    mode     = "2560x1600@165",
-    position = "auto",
-    scale    = "2",
+    output   = machine.monitor.output,
+    mode     = machine.monitor.mode,
+    position = machine.monitor.position,
+    scale    = machine.monitor.scale,
 })
 
-hl.workspace_rule({ workspace = "1", monitor = "eDP-1", persistent = true })
-hl.workspace_rule({ workspace = "2", monitor = "eDP-1", persistent = true })
-hl.workspace_rule({ workspace = "3", monitor = "eDP-1", persistent = true })
-hl.workspace_rule({ workspace = "4", monitor = "eDP-1", persistent = true })
-hl.workspace_rule({ workspace = "5", monitor = "eDP-1", persistent = true })
+-- Persistent Workspaces on the selected display.
+if machine.workspace.monitor then
+    for w = machine.workspace.first, machine.workspace.last do
+        hl.workspace_rule({ workspace = tostring(w), monitor = machine.workspace.monitor, persistent = true })
+    end
+end

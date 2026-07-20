@@ -1,0 +1,7 @@
+{
+  "name": "zayed-laptop",
+  "network_interface": "wlp3s0",
+  "scale": 2,
+  "bar_height": 34,
+  "font_size": "11pt"
+}

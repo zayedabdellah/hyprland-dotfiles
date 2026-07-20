@@ -1,0 +1,4 @@
+# Optional Sunshine configuration. Replace the adapter placeholder locally.
+# The active adapter is hardware-specific and must be selected locally.
+adapter_name = __SUNSHINE_ADAPTER__
+encoder = vaapi

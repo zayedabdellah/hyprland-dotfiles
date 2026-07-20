@@ -1,0 +1,9 @@
+-- Copy this file to machine.local.lua to select a profile locally.
+-- machine.local.lua is ignored by Git and may contain private hardware values.
+
+return {
+    profile = "zayed-laptop",
+    -- Optional per-machine overrides. Keep behavior unchanged unless a value
+    -- is genuinely hardware, path, or distribution specific.
+    overrides = {},
+}

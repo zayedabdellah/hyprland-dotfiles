@@ -33,13 +33,26 @@ hl.window_rule({
 hl.layer_rule({
     name  = "waybar-click-passthrough",
     match = { namespace = "^waybar$" },
-    
+
     no_anim = true,
 })
-
 hl.window_rule({
     name  = "fix-pseudo-fullscreen",
     match = { fullscreen = true },
 
     pseudo = false,
+})
+
+-- Thunar File Chooser & Dialog Rules
+hl.window_rule({
+    name  = "thunar-file-dialogs",
+    match = {
+        class = "thunar",
+        title = "Open File|Save File|Open Folder|Save As|Select a File|File Operation Progress|Confirm to replace files"
+    },
+
+    -- Window management states
+    float  = true,
+    center = true,
+    size   = "1280 800",
 })

@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Gruvbox Material Dark",
+  "version": "1.0.0",
+  "description": "The active browser-interface theme, sanitized for portable installation.",
+  "theme": {
+    "colors": {
+      "background_tab": [41, 40, 40],
+      "background_tab_inactive": [73, 70, 70],
+      "bookmark_text": [221, 199, 161],
+      "bookmark_text_inactive": [221, 199, 161],
+      "frame": [41, 40, 40],
+      "frame_inactive": [63, 60, 60],
+      "ntp_background": [41, 40, 40],
+      "ntp_text": [216, 166, 87],
+      "omnibox_background": [60, 56, 54],
+      "omnibox_text": [221, 199, 161],
+      "tab_background_text": [146, 131, 116],
+      "tab_text": [221, 199, 161],
+      "toolbar": [50, 48, 47],
+      "toolbar_button_icon": [125, 174, 163]
+    }
+  }
+}

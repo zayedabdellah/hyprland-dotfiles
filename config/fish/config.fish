@@ -13,7 +13,11 @@ set -gx XDG_SESSION_TYPE wayland
 # Standard defaults (Native apps look normal)
 set -gx QT_AUTO_SCREEN_SCALE_FACTOR 0
 
+set -U fish_greeting ""
+
 fish_add_path ~/go/bin
 fish_add_path ~/.local/bin
+fish_add_path ~/.cargo/bin
+alias dolphin-emu="env QT_SCALE_FACTOR=2 dolphin-emu"
 
-alias wine="prime-run mangohud /home/zayed/.local/share/GE/GE-Proton11-1/files/bin/wine"
+oh-my-posh init fish --config ~/.config/oh-my-posh/torii-zayed.omp.json | source

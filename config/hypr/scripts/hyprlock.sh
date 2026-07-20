@@ -13,15 +13,13 @@ if [[ ! -r "$CONFIG_FILE" ]]; then
     exec hyprlock "$@"
 fi
 
-if [[ "${DOTFILES_MACHINE_PROFILE:-generic}" == "zayed-laptop" && -f "$WALLPAPER" ]]; then
-    # The selected image is only read by this wrapper and is never replaced
-    # or removed by it.
+if [[ -f "$WALLPAPER" ]]; then
+    # The shared Torii image is only read by this wrapper and is never
+    # replaced or removed by it, regardless of the selected machine profile.
     wallpaper_path="$WALLPAPER"
 else
     wallpaper_path="screenshot"
-    if [[ "${DOTFILES_MACHINE_PROFILE:-generic}" == "zayed-laptop" ]]; then
-        echo "dotfiles: Torii wallpaper not found; using Hyprlock screenshot fallback" >&2
-    fi
+    echo "dotfiles: Torii wallpaper not found; using Hyprlock screenshot fallback" >&2
 fi
 
 escaped_path=${wallpaper_path//\\/\\\\}

@@ -5,7 +5,11 @@ CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 WALLPAPER="$CONFIG_HOME/hypr/wallpapers/torii.jpg"
 PROFILE="${DOTFILES_MACHINE_PROFILE:-generic}"
 
-if [[ "$PROFILE" != "zayed-laptop" ]]; then
+# Torii is part of the shared rice. The profile value is retained in the
+# diagnostic output for troubleshooting, but it must not prevent either
+# supported profile from loading the wallpaper.
+if [[ "$PROFILE" != "generic" && "$PROFILE" != "zayed-laptop" ]]; then
+    echo "dotfiles: invalid machine profile '$PROFILE'; wallpaper not changed" >&2
     exit 0
 fi
 

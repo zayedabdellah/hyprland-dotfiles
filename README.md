@@ -10,7 +10,10 @@ and appearance values intact.
 
 ## Prerequisites
 
-This script assumes you already have Hyprland installed and running. It will check for other necessary components and provide installation suggestions if they are missing. However, it is crucial that Hyprland itself is already operational.
+Run the installer as the normal desktop user on a supported Arch, Gentoo, or
+experimental Fedora/NixOS system. A fresh Arch installation is supported: the
+default operation installs the complete verified official package set before
+deploying configuration. It must not be run as root.
 
 ## Machine profiles
 
@@ -56,20 +59,39 @@ To set up these dotfiles, follow these steps:
 
     ```bash
     chmod +x install.sh
-    ./install.sh --profile generic
+    ./install.sh
     ```
 
-The installer chooses `generic` safely when no profile is specified in
-non-interactive mode. Interactive installs detect the laptop only when
-`eDP-1`, `2560x1600@165`, and NVIDIA characteristics all match, then ask for
-confirmation. Use `--profile zayed-laptop` for the exact laptop profile.
+With no arguments the installer presents the profile menu, prints the complete
+plan, asks for confirmation, installs packages, deploys files, validates the
+result, and prints the next Hyprland/reboot step. The menu is:
+
+```text
+1) Generic
+   Detect monitor, network interface, and safe GPU settings.
+2) Zayed laptop
+   Preserve eDP-1, 2560x1600@165, position 0x0, scale 2, wlp3s0, and NVIDIA settings.
+```
+
+If the non-private display/GPU check is exact, option 2 is recommended but
+never selected silently. Non-interactive operation safely selects `generic`
+unless `--profile` is supplied.
 
 Optional modules are disabled unless explicitly requested with
-`--enable-optional MODULE`. Use `--audit` or `--dry-run` to inspect planned
-actions without downloads, package changes, shell changes, desktop settings,
-or configuration deployment. Fish becomes the login shell only with the
-explicit `--set-default-shell` option and interactive confirmation.
+`--enable-optional MODULE`. `--packages-only`, `--config-only`, and
+`--skip-packages` separate package and configuration operations. Use `--audit`
+or `--dry-run` to inspect planned actions without downloads, package changes,
+shell changes, desktop settings, or configuration deployment. On a normal
+interactive full install, Fish is offered as the default shell with Yes as the
+default; declining leaves the login shell unchanged. `--set-default-shell`
+requests the same opt-in operation explicitly.
 GTK desktop settings are applied only with `--apply-desktop-settings`.
+
+Before replacing a different existing file, the installer creates a
+timestamped backup under `~/.local/state/dotfiles/backups/` and records each
+replacement in `manifest.tsv`. Unchanged files are left untouched, and
+unrelated files are preserved. A complete restore/uninstall orchestrator is
+still future work.
 
 Gentoo and Arch are the supported package-management targets. Gentoo uses
 verified Portage atoms only and prints USE-flag/overlay guidance without
@@ -107,17 +129,15 @@ To ensure your apps pick up the themes correctly:
 2.  **Qt Apps:** 
     *   Open **Kvantum Manager**.
     *   Go to **Change/Delete Theme**.
-    *   Select **gruvbox-kvantum** from the list and click **Use this theme**
-        when the exact active theme files have been supplied with verified
-        redistribution permission. The repository preserves this active
-        selector but does not silently substitute another Kvantum theme while
-        the asset license is unresolved.
+    *   Select **gruvbox-kvantum** from the list and click **Use this theme**.
+        The exact local payload is deployed for the approved test, but its
+        public redistribution license still requires review.
     *   Open **qt6ct** (or `qt5ct` if using Qt5) and ensure the **Style** is set to **kvantum**.
 
-If you have legal permission to use the active local Gruvbox Kvantum theme,
-manually copy its two files into both
-`~/.config/Kvantum/gruvbox-kvantum/` and `~/.themes/gruvbox-kvantum/`.
-The installer intentionally does not bundle or copy those unverified files.
+The installer copies the exact approved local payload into both
+`~/.config/Kvantum/gruvbox-kvantum/` and `~/.themes/gruvbox-kvantum/`, and
+keeps `theme=gruvbox-kvantum` selected. Review `docs/asset-provenance.md`
+before any public commit or redistribution.
 
 ## Dependencies
 
@@ -144,7 +164,7 @@ The following applications are used in these configurations:
 *   **Kvantum**: A SVG-based theme engine for Qt.
 *   **qt6ct**: Qt6 Configuration Tool.
 *   **fish**: A smart and user-friendly command line shell.
-*   **Papirus-Dark**: Required icon theme for GTK, Qt, and xsettingsd.
+*   **Papirus-Dark**: Required icon theme for GTK, Qt, xsettingsd, and Rofi fallback.
 
 Rofi preserves Oranchelo as the preferred icon theme without bundling it. The
 Rofi launcher detects Oranchelo and falls back to the required Papirus-Dark
@@ -154,8 +174,12 @@ starts with its default icon behavior.
 ## Optional modules
 
 RetroArch appearance settings, Sunshine, Dolphin Emulator, Suyu, GOverlay,
-vkBasalt, vkSumi, Pavucontrol preferences, and `mimeapps.list` are stored
-under `config/optional/` and are not part of the default rice deployment.
+vkBasalt, vkSumi, Pavucontrol preferences, `mimeapps.list`, and Brave are
+stored under `config/optional/` or `config/brave/` and are not part of the
+default rice deployment. Arch official optional packages are installed only
+when explicitly enabled. AUR modules (`suyu`, `vksumi`, and `brave`) require an
+existing `paru` or `yay` and a separate confirmation; the installer never
+installs an AUR helper.
 ROMs, BIOS files, saves, states, downloaded cores, thumbnails, logs, caches,
 private emulator paths, and complete Brave profiles are not included.
 

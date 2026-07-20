@@ -14,7 +14,7 @@ fi
 
 interface="${DOTFILES_NETWORK_INTERFACE:-}"
 if [[ -z "$interface" ]] && command -v ip >/dev/null 2>&1; then
-    interface="$(ip route get 1.1.1.1 2>/dev/null | awk '{for (i = 1; i <= NF; i++) if ($i == "dev") { print $(i + 1); exit }}')"
+    interface="$(ip route get 1.1.1.1 2>/dev/null | awk '{for (i = 1; i <= NF; i++) if ($i == "dev") { print $(i + 1); exit }}' || true)"
 fi
 
 if [[ -n "$interface" && ! "$interface" =~ ^[[:alnum:]_.:-]+$ ]]; then

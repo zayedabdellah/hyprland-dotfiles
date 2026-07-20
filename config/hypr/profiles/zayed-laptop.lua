@@ -61,6 +61,7 @@ return {
         media_daemon = home .. "/.config/waybar/scripts/media-daemon.sh",
         pipewire_launcher = "gentoo-pipewire-launcher",
         wallpaper_daemon = "awww-daemon",
+        wallpaper = home .. "/.config/hypr/scripts/wallpaper.sh",
         bluetooth_applet = "blueman-applet",
         tailscale_systray = "tailscale systray",
         polkit_agent = "/usr/libexec/hyprpolkitagent",

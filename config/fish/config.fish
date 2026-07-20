@@ -20,4 +20,4 @@ fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 alias dolphin-emu="env QT_SCALE_FACTOR=2 dolphin-emu"
 
-oh-my-posh init fish --config ~/.config/oh-my-posh/torii-zayed.omp.json | source
+oh-my-posh init fish --config ~/.themes/torii-zayed.omp.json | source

@@ -12,7 +12,7 @@
     "disable-scroll": true,
     "all-outputs": true,
     "format": "{name}",
-    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"{name}\" })'"
+    "on-click": "hyprctl dispatch workspace {name}"
   },
 
   "hyprland/window": {

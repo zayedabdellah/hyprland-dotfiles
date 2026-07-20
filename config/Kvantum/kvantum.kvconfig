@@ -1,6 +1,6 @@
 [General]
-theme=kvantum-dark
+theme=gruvbox-kvantum
 
 [Applications]
 Default=filelight
-kvantum-dark=filelight
+gruvbox-kvantum=filelight

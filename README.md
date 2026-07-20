@@ -56,12 +56,27 @@ To set up these dotfiles, follow these steps:
 
     ```bash
     chmod +x install.sh
-    ./install.sh
+    ./install.sh --profile generic
     ```
 
+The installer chooses `generic` safely when no profile is specified in
+non-interactive mode. Interactive installs detect the laptop only when
+`eDP-1`, `2560x1600@165`, and NVIDIA characteristics all match, then ask for
+confirmation. Use `--profile zayed-laptop` for the exact laptop profile.
+
 Optional modules are disabled unless explicitly requested with
-`--enable-optional MODULE`. Package installation, backup/restore behavior, and
-distribution-specific dependency handling remain separate future work.
+`--enable-optional MODULE`. Use `--audit` or `--dry-run` to inspect planned
+actions without downloads, package changes, shell changes, desktop settings,
+or configuration deployment. Fish becomes the login shell only with the
+explicit `--set-default-shell` option and interactive confirmation.
+GTK desktop settings are applied only with `--apply-desktop-settings`.
+
+Gentoo and Arch are the supported package-management targets. Gentoo uses
+verified Portage atoms only and prints USE-flag/overlay guidance without
+changing Portage configuration. Fedora support is experimental and performs
+no automatic package installation. NixOS requires a future native
+NixOS/Home Manager module; this shell installer does not manage NixOS
+packages declaratively.
 
 3.  **Restart Hyprland:**
 
@@ -92,10 +107,17 @@ To ensure your apps pick up the themes correctly:
 2.  **Qt Apps:** 
     *   Open **Kvantum Manager**.
     *   Go to **Change/Delete Theme**.
-    *   Select the installed **kvantum-dark** theme from the list and click
-        **Use this theme**. The repository does not bundle the unlicensed
-        Gruvbox Kvantum asset.
+    *   Select **gruvbox-kvantum** from the list and click **Use this theme**
+        when the exact active theme files have been supplied with verified
+        redistribution permission. The repository preserves this active
+        selector but does not silently substitute another Kvantum theme while
+        the asset license is unresolved.
     *   Open **qt6ct** (or `qt5ct` if using Qt5) and ensure the **Style** is set to **kvantum**.
+
+If you have legal permission to use the active local Gruvbox Kvantum theme,
+manually copy its two files into both
+`~/.config/Kvantum/gruvbox-kvantum/` and `~/.themes/gruvbox-kvantum/`.
+The installer intentionally does not bundle or copy those unverified files.
 
 ## Dependencies
 
